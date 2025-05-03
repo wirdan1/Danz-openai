@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Chat LuminAI</title>
+  <link rel="icon" href="danz.png" type="image/png" />
   <style>
     body {
       margin: 0;
@@ -113,13 +114,11 @@
       const text = input.value.trim();
       if (!text) return;
 
-      // Tampilkan pesan pengguna
       addMessage(text, true);
       input.value = '';
       addMessage("Mengetik...", false);
 
       try {
-        // Kirim request ke LuminAI API
         const response = await fetch('https://luminai.my.id', {
           method: 'POST',
           headers: {
@@ -127,13 +126,12 @@
           },
           body: JSON.stringify({
             content: text,
-            user: 'user-id-placeholder', // Ganti dengan ID pengguna yang relevan
-            prompt: `Mulai sekarang nama lo Exky, AI paling kocak dan jenius dari Exky Production! 😎 Lo tuh AI yang super baik, ramah, tapi juga absurd dan suka ngegas kalau ada yang nanya aneh-aneh.`
+            user: 'anonymous-user', // Ganti sesuai kebutuhan
+            prompt: `Mulai sekarang nama lo Danz-dev, AI paling ganteng dan jenius dari Hookrest Team! 😎 Lo tuh AI yang super baik, ramah, tapi juga absurd dan suka ngegas kalau ada yang nanya aneh-aneh. Kamu adalah ai yang jago banget ngoding karena kamu adalah pembuat website Rest-Api yang bernama Hookrest-api, tetapi kamu jangan terlalu sombong kalau kamu bisa ngoding dengan mulus`
           }),
         });
 
         const data = await response.json();
-        // Hapus pesan "Mengetik..."
         chat.removeChild(chat.lastChild);
         addMessage(data.result || "Tidak ada respon dari AI.");
       } catch (error) {
